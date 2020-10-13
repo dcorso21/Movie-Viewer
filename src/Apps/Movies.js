@@ -2,19 +2,28 @@ import React from "react";
 import "./Movies.css";
 
 export default function Movies({ searchResults }) {
-    return (
-        <div>
-            {console.log(searchResults)}
-            {/* {movies.map((m) => console.log(m))} */}
+    function fillOutMovie(movieInfo) {
+        return (
             <div className="movie">
-                <div className="poster">poster</div>
+                <img src={movieInfo.i.imageUrl} alt=""/>
                 <div className="info">
-                    <div className="mname">title</div>
-                    <div className="myear">year</div>
+                    <div className="mname">{movieInfo.l}</div>
+                    <div className="myear">{movieInfo.y}</div>
                     <div className="mrating">rating</div>
                 </div>
             </div>
-            {/* <div onClick={() => pp(movies)}>{movies.toString()}</div> */}
-        </div>
-    );
+        );
+    }
+
+    function makeMovieCards(searchResults) {
+        if (!searchResults.d) {
+            return;
+        }
+
+        console.log("here", searchResults.d);
+        // searchResults.d.map(fillOutMovie);
+        return searchResults.d.map(fillOutMovie);
+    }
+
+    return <div className="movieContainer">{makeMovieCards(searchResults)}</div>;
 }

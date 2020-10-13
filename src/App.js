@@ -13,9 +13,7 @@ export default class App extends React.Component {
         };
     }
     setSearchText(e) {
-        // console.log(e.target.value);
         this.setState({ searchText: e.target.value });
-        console.log(this.state.searchText);
     }
     CallforData(e) {
         let req = unirest(

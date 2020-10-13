@@ -1,11 +1,22 @@
+.movieContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .movie {
     width: 210px;
     height: 345px;
-    margin: 15px;
-    background-color: rgb(48, 48, 48);
+    margin: 25px 15px;
+    /* background-color: rgb(48, 48, 48); */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.movie img {
+    width: 210px;
+    height: 300px;
+    /* object-fit: contain; */
 }
 
 
@@ -20,5 +31,8 @@
     color: white;
 } 
 
+.mtitle {
+    text-align: center;
+}
 /* .info div {
 } */
