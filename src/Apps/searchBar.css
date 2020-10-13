@@ -1,0 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.SearchBar{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: rgb(120, 120, 120);
+}
