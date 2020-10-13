@@ -1,20 +1,20 @@
-import React from 'react';
-import "./Movies.css"
+import React from "react";
+import "./Movies.css";
 
-
-export default function Movies({movies}) {
+export default function Movies({ searchResults }) {
     return (
-        // { movies.map((movie) => (
-        //     <div className="movie">
-        //         <div className="poster">this is a poster spot</div>
-        //         <div className="info">
-        //             <div className="mname">{movie.title}</div>
-        //             <div className="myear">{movie.year}</div>
-        //             <div className="mrating">{movie.rating}</div>
-        //         </div>
-        //     </div>
-        // ))}
-    // <div onClick={() => pp(movies)}>{movies.toString()}</div>
-    <div></div>
-    )
+        <div>
+            {console.log(searchResults)}
+            {/* {movies.map((m) => console.log(m))} */}
+            <div className="movie">
+                <div className="poster">poster</div>
+                <div className="info">
+                    <div className="mname">title</div>
+                    <div className="myear">year</div>
+                    <div className="mrating">rating</div>
+                </div>
+            </div>
+            {/* <div onClick={() => pp(movies)}>{movies.toString()}</div> */}
+        </div>
+    );
 }
