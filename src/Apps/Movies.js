@@ -7,9 +7,10 @@ export default function Movies({ searchResults }) {
             <div className="movie">
                 <img src={movieInfo.i.imageUrl} alt=""/>
                 <div className="info">
-                    <div className="mname">{movieInfo.l}</div>
+                    <div className="mname"><p>{movieInfo.l}
+                        </p></div>
                     <div className="myear">{movieInfo.y}</div>
-                    <div className="mrating">rating</div>
+                    {/* <div className="mrating">rating</div> */}
                 </div>
             </div>
         );
