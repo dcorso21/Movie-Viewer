@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "./Apps/NavBar";
 import SearchBar from "./Apps/SearchBar";
 import Movies from "./Apps/Movies";
-const APIKEY = "4ed50824248c60e35aae0bba177517b9";
+const APIKEY = process.env.REACT_APP_API_KEY;
 const SEARCHPATH = `https://api.themoviedb.org/3/search/movie?&api_key=${APIKEY}&query=`;
 
 export default class App extends React.Component {
