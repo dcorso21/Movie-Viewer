@@ -41,7 +41,7 @@ export default class App extends React.Component {
         }
         return (
             <div>
-                <NavBar />
+                {/* <NavBar /> */}
                 <SearchBar
                     setSearchText={(e) => this.setSearchText(e)}
                     handleSearchEnter={(e) => this.handleSearchEnter(e)}
