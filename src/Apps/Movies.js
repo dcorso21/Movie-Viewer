@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Movies.css";
+import Modal from "./Modal.js";
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 export default function Movies({ searchResults }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [clickedMovie, setClickedMovie] = useState(searchResults[0]);
+
+    function handleClickMovie(movie) {
+        setClickedMovie(movie);
+        setIsOpen(true);
+    }
+
     function fillOutMovie(movieInfo) {
-        console.log(movieInfo);
         return (
-            <div key={movieInfo.id} className="movie fadeIn">
+            <div
+                key={movieInfo.id}
+                className="movie fadeIn"
+                onClick={() => handleClickMovie(movieInfo)}
+            >
                 <img
                     src={IMGPATH + movieInfo.poster_path}
                     alt={movieInfo.title}
@@ -27,6 +39,11 @@ export default function Movies({ searchResults }) {
     }
 
     return (
-        <div className="movieContainer">{makeMovieCards(searchResults)}</div>
+        <>
+            <div className="movieContainer">
+                {makeMovieCards(searchResults)}
+            </div>
+            <Modal isOpen={isOpen} clickedMovie={clickedMovie} />
+        </>
     );
 }
