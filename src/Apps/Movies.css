@@ -1,4 +1,4 @@
-.movieContainer{
+.movieContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -13,22 +13,20 @@
     flex-direction: column;
     justify-content: space-between;
     box-shadow: -4px -4px 0px rgba(255, 2, 69, 0.276);
-    transition: all .4s;
+    transition: all 0.4s;
+    cursor: pointer;
 }
 
-.movie:hover{
+.movie:hover {
     box-shadow: 4px 4px 0px rgba(76, 0, 255, 0.577);
     transform: translateX(-4px) translateY(-4px);
-
 }
-
 
 .movie img {
     width: 210px;
     height: 300px;
     /* object-fit: contain; */
 }
-
 
 .movie > .info {
     background-color: rgb(41, 38, 41);
@@ -39,9 +37,9 @@
     justify-content: space-evenly;
     align-items: center;
     color: white;
-} 
+}
 
-.mtitle p{
+.mtitle p {
     text-align: center;
 }
 
@@ -49,7 +47,21 @@ p {
     text-align: center;
 }
 
-
 .myear {
     font-size: 80%;
+}
+
+.fadeIn {
+    animation: fade-in 1.5s ease 0s 1 forwards running;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) rotateY(90deg) rotateX(0deg);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1) rotateY(0deg) rotateX(0deg);
+    }
 }

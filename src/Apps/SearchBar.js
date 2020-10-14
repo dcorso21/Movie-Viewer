@@ -1,27 +1,19 @@
 import React from "react";
 import "./searchBar.css";
 
-export default function SearchBar({ setSearchText, handleSearchEnter }) {
+export default function SearchBar(props) {
     return (
         <div className="SearchBar">
             <ul className="navDisplay">
-                <li className="pageName">
-                    Movie Viewer
-                </li>
-                <li>
-                    Popular
-                </li>
-                <li>
-                    In Theatres
-                </li>
-                <li>
-                    Coming Soon
-                </li>
+                <li className="pageName">Movie Viewer</li>
+                <li onClick={props.fetchPopular}>Popular</li>
+                <li onClick={props.fetchNowPlaying}>In Theatres</li>
+                <li onClick={props.fetchUpcoming}>Coming Soon</li>
                 <li>
                     <input
                         className="searchInput"
-                        onKeyPress={handleSearchEnter}
-                        onChange={setSearchText}
+                        onKeyPress={props.handleSearchEnter}
+                        onChange={props.setSearchText}
                         type="text"
                         placeholder="Search for Movies"
                     />

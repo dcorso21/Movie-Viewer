@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "./Apps/NavBar";
+// import NavBar from "./Apps/NavBar";
 import SearchBar from "./Apps/SearchBar";
 import Movies from "./Apps/Movies";
 const APIKEY = process.env.REACT_APP_API_KEY;
@@ -22,9 +22,9 @@ export default class App extends React.Component {
     setSearchText(e) {
         this.setState({ searchText: e.target.value });
     }
-    async fetchNowPlaying() {
+    async fetchMovies(field) {
         let resp = await fetch(
-            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=en-US&page=1`
+            `https://api.themoviedb.org/3/movie/${field}?api_key=${APIKEY}&language=en-US&page=1`
         );
         let jsonresp = await resp.json();
         this.setState({ searchResults: jsonresp.results });
@@ -37,7 +37,7 @@ export default class App extends React.Component {
 
     render() {
         if (this.state.searchResults === "") {
-            this.fetchNowPlaying();
+            this.fetchMovies("popular");
         }
         return (
             <div>
@@ -45,6 +45,9 @@ export default class App extends React.Component {
                 <SearchBar
                     setSearchText={(e) => this.setSearchText(e)}
                     handleSearchEnter={(e) => this.handleSearchEnter(e)}
+                    fetchPopular={() => this.fetchMovies("popular")}
+                    fetchNowPlaying={() => this.fetchMovies("now_playing")}
+                    fetchUpcoming={()=> this.fetchMovies("upcoming")}
                 />
                 <Movies searchResults={this.state.searchResults} />
             </div>

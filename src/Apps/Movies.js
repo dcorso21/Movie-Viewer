@@ -4,8 +4,9 @@ const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 export default function Movies({ searchResults }) {
     function fillOutMovie(movieInfo) {
+        console.log(movieInfo);
         return (
-            <div key={movieInfo.id} className="movie">
+            <div key={movieInfo.id} className="movie fadeIn">
                 <img
                     src={IMGPATH + movieInfo.poster_path}
                     alt={movieInfo.title}
