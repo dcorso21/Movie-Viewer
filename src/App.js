@@ -2,51 +2,47 @@ import React from "react";
 import NavBar from "./Apps/NavBar";
 import SearchBar from "./Apps/SearchBar";
 import Movies from "./Apps/Movies";
-const unirest = require("unirest");
+const APIKEY = "4ed50824248c60e35aae0bba177517b9";
+const SEARCHPATH = `https://api.themoviedb.org/3/search/movie?&api_key=${APIKEY}&query=`;
 
 export default class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             searchText: "",
-            searchResults: {},
+            searchResults: "",
         };
     }
     setSearchText(e) {
         this.setState({ searchText: e.target.value });
     }
-    CallforData(e) {
-        let req = unirest(
-            "GET",
-            "https://rapidapi.p.rapidapi.com/title/auto-complete"
+    async fetchNowPlaying() {
+        let resp = await fetch(
+            `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=en-US&page=1`
         );
-
-        req.query({
-            q: this.state.searchText,
-        });
-
-        req.headers({
-            "x-rapidapi-host": "imdb8.p.rapidapi.com",
-            "x-rapidapi-key":
-                "a2bae0723bmsh29b3914ddcadd1ep1df2c5jsnc75135651838",
-            useQueryString: true,
-        });
-
-        req.end((res) => {
-            if (res.error) throw new Error(res.error);
-            this.setState({ searchResults: res.body });
-            console.log(this.state.searchResults);
-        });
+        let jsonresp = await resp.json();
+        console.log(jsonresp.results);
+        this.setState({searchResults : jsonresp.results});
     }
+    async fetchSearchQuery() {
+        let resp = await fetch(SEARCHPATH + this.state.searchText);
+        let jsonresp = await resp.json();
+        console.log(jsonresp.results);
+        this.setState({searchResults : jsonresp.results});
+    }
+
     render() {
+        if (this.state.searchResults === ""){
+            this.fetchNowPlaying();
+        }
         return (
             <div>
                 <NavBar />
                 <SearchBar
                     setSearchText={(e) => this.setSearchText(e)}
-                    CallforData={(e) => this.CallforData(e)}
+                    CallforData={(e) => this.fetchSearchQuery(e)}
                 />
-                <Movies searchResults={{...this.state.searchResults}} />
+                <Movies searchResults={this.state.searchResults} />
             </div>
         );
     }
