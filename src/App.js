@@ -13,6 +13,12 @@ export default class App extends React.Component {
             searchResults: "",
         };
     }
+    handleSearchEnter(e) {
+        if (e.key === "Enter") {
+            console.log("enter press here! ");
+            this.fetchSearchQuery();
+        }
+    }
     setSearchText(e) {
         this.setState({ searchText: e.target.value });
     }
@@ -21,18 +27,16 @@ export default class App extends React.Component {
             `https://api.themoviedb.org/3/movie/now_playing?api_key=${APIKEY}&language=en-US&page=1`
         );
         let jsonresp = await resp.json();
-        console.log(jsonresp.results);
-        this.setState({searchResults : jsonresp.results});
+        this.setState({ searchResults: jsonresp.results });
     }
     async fetchSearchQuery() {
         let resp = await fetch(SEARCHPATH + this.state.searchText);
         let jsonresp = await resp.json();
-        console.log(jsonresp.results);
-        this.setState({searchResults : jsonresp.results});
+        this.setState({ searchResults: jsonresp.results });
     }
 
     render() {
-        if (this.state.searchResults === ""){
+        if (this.state.searchResults === "") {
             this.fetchNowPlaying();
         }
         return (
@@ -40,7 +44,7 @@ export default class App extends React.Component {
                 <NavBar />
                 <SearchBar
                     setSearchText={(e) => this.setSearchText(e)}
-                    CallforData={(e) => this.fetchSearchQuery(e)}
+                    handleSearchEnter={(e) => this.handleSearchEnter(e)}
                 />
                 <Movies searchResults={this.state.searchResults} />
             </div>

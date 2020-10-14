@@ -5,7 +5,7 @@ const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 export default function Movies({ searchResults }) {
     function fillOutMovie(movieInfo) {
         return (
-            <div className="movie">
+            <div key={movieInfo.id} className="movie">
                 <img
                     src={IMGPATH + movieInfo.poster_path}
                     alt={movieInfo.title}
@@ -21,11 +21,7 @@ export default function Movies({ searchResults }) {
     }
 
     function makeMovieCards(searchResults) {
-        if (!searchResults) {
-            return;
-        }
-        console.log("see", searchResults);
-
+        if (!searchResults) return;
         return searchResults.map(fillOutMovie);
     }
 
