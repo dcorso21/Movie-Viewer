@@ -43,7 +43,11 @@ export default function Movies({ searchResults }) {
             <div className="movieContainer">
                 {makeMovieCards(searchResults)}
             </div>
-            <Modal isOpen={isOpen} clickedMovie={clickedMovie} />
+            <Modal
+                setIsOpen={setIsOpen}
+                isOpen={isOpen}
+                clickedMovie={clickedMovie}
+            />
         </>
     );
 }
