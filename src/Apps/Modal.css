@@ -1,14 +1,21 @@
 .Modal {
+    box-sizing: border-box;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 50%;
-    height: 50%;
-    transform: translate(50%, 50%);
-    background-color: #000;
-    color: #FFF;
-    padding: 50px;
+    width: 70%;
+    height: 70%;
+    transform: translate(-50%, -43%);
+    color: #fff;
+    padding: 10px 30px;
     z-index: 1001;
+}
+
+.modalContent{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .Overlay {
@@ -19,4 +26,31 @@
     bottom: 0;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.803);
+}
+
+.card-title {
+    font-size: 200%;
+    padding-top: 130px;
+}
+
+.infoCard{
+    display: flex;
+    justify-content: space-between;
+}
+
+.overview{
+    width: 50%;
+}
+
+.Modal h3{
+    border-bottom: 1px solid #fff;
+}
+
+
+.overview p{
+    padding: 10px;
+}
+
+.releaseDate, .voteAverage{
+    padding-top: 10px;
 }
